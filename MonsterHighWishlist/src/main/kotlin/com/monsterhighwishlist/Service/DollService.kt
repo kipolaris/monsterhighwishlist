@@ -1,13 +1,12 @@
 package com.monsterhighwishlist.Service
 
 import com.monsterhighwishlist.Data.Doll
-import com.monsterhighwishlist.Repositories.AllDollsListRepository
 import com.monsterhighwishlist.Repositories.DollRepository
 import com.monsterhighwishlist.Repositories.WishlistRepository
 import org.springframework.stereotype.Service
 
 @Service
-class DollService(private val dollRepository: DollRepository, private val wishlistRepository: WishlistRepository, private val allDollsListRepository: AllDollsListRepository) {
+class DollService(private val dollRepository: DollRepository, private val wishlistRepository: WishlistRepository) {
 
     fun getAllDolls(): List<Doll> = dollRepository.findAll()
 
@@ -18,8 +17,6 @@ class DollService(private val dollRepository: DollRepository, private val wishli
             wishlist.dolls.add(doll)
             wishlistRepository.save(wishlist)
         }
-        val allDollsList = allDollsListId.let { allDollsListRepository.findById(it).orElseThrow { IllegalArgumentException("AllDollsList not found") } }
-        doll.allDollsList = allDollsList
         return dollRepository.save(doll)
     }
 

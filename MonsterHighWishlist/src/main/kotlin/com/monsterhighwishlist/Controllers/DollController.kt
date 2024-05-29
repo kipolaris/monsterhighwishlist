@@ -33,9 +33,4 @@ class DollController(
             ResponseEntity.notFound().build()
         }
     }
-
-    @PostMapping("/all-dolls")
-    fun addDollToAllDollsList(@RequestBody doll: Doll): Doll {
-        return dollService.saveDoll(doll)
-    }
 }

@@ -6,11 +6,13 @@ import com.monsterhighwishlist.Data.WishlistCategory
 import com.monsterhighwishlist.Service.DollService
 import com.monsterhighwishlist.Service.WishlistService
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.boot.runApplication
 import org.springframework.context.ApplicationListener
 import org.springframework.context.event.ContextRefreshedEvent
 
 @SpringBootApplication
+@EntityScan("com.monsterhighwishlist.Data")
 class MonsterHighWishlistApplication(private val wishlistService: WishlistService, private val dollService: DollService) :
     ApplicationListener<ContextRefreshedEvent> {
 
