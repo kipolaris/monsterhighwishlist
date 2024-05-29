@@ -1,6 +1,7 @@
 package com.monsterhighwishlist.Controllers
 
 import com.monsterhighwishlist.Data.Wishlist
+import com.monsterhighwishlist.Data.WishlistCategory
 import com.monsterhighwishlist.Service.WishlistService
 import org.springframework.web.bind.annotation.*
 
@@ -14,5 +15,5 @@ class WishlistController(private val wishlistService: WishlistService) {
     fun addWishlist(@RequestBody wishlist: Wishlist): Wishlist = wishlistService.saveWishlist(wishlist)
 
     @GetMapping("/category/{category}")
-    fun getWishlistsByCategory(@PathVariable category: String): List<Wishlist> = wishlistService.getWishlistByCategory(category)
+    fun getWishlistsByCategory(@PathVariable category: WishlistCategory): List<Wishlist> = wishlistService.getWishlistByCategory(category)
 }
