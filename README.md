@@ -4,7 +4,7 @@ Spring boot applikáció kotlinban ahol Monster High babákat lehet listákba re
 ## Listák:
 - Összes baba
 - Wishlist
-- Thinking about it
+- Considering
 - Already secured
 
 ## Babák:
