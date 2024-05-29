@@ -30,7 +30,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("javax.xml.bind:jaxb-api")
     runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

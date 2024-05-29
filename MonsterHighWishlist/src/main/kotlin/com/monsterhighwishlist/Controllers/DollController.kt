@@ -9,13 +9,15 @@ import com.monsterhighwishlist.Service.DollService
 
 @RestController
 @RequestMapping("/api/dolls")
-class DollController(private val dollService: DollService) {
+class DollController(
+    private val dollService: DollService
+) {
 
     @GetMapping
     fun getAllDolls(): List<Doll> = dollService.getAllDolls()
 
     @PostMapping
-    fun addDoll(@RequestBody doll: Doll, @RequestParam wishlistId: Long?): Doll = dollService.saveDoll(doll, wishlistId)
+    fun addDoll(@RequestBody doll: Doll, @RequestParam wishlistId: Long?, @RequestParam allDollsListId: Long): Doll = dollService.saveDoll(doll, wishlistId, allDollsListId)
 
     @GetMapping("/search")
     fun searchDolls(@RequestParam name: String): List<Doll> = dollService.findDollsByName(name)
@@ -30,5 +32,10 @@ class DollController(private val dollService: DollService) {
         } else {
             ResponseEntity.notFound().build()
         }
+    }
+
+    @PostMapping("/all-dolls")
+    fun addDollToAllDollsList(@RequestBody doll: Doll): Doll {
+        return dollService.saveDoll(doll)
     }
 }

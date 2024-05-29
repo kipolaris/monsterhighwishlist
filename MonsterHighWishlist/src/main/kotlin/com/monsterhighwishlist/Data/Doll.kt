@@ -12,6 +12,11 @@ data class Doll(
 
     @ManyToOne
     @JoinColumn(name = "wishlist_id")
-    var wishlist: Wishlist? = null
+    var wishlist: Wishlist? = null,
+
+    @ManyToOne
+    @JoinColumn(name = "all_dolls_list_id")
+    var allDollsList: AllDollsList? = null
 )
+
 
