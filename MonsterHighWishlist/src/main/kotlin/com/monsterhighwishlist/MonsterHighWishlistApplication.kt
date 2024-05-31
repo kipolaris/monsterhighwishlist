@@ -27,11 +27,21 @@ class MonsterHighWishlistApplication(private val wishlistService: WishlistServic
 
         val clawdeenWolf = Doll(name = "Clawdeen Wolf", imageUrl = "/dolls/clawdeennobg.png")
         val draculaura = Doll(name = "Draculaura", imageUrl = "/dolls/draculauranobg.png")
-        val frankieStein = Doll(name = "FrankieStein", imageUrl = "/dolls/frankienobg.png")
+        val frankieStein = Doll(name = "Frankie Stein", imageUrl = "/dolls/frankienewnobg.png")
+        val cleoDeNyle = Doll(name = "Cleo De Nyle", imageUrl = "/dolls/cleodenylenobg.png")
+        val lagoonaBlue = Doll(name = "Lagoona Blue", imageUrl = "/dolls/lagoonabluenobg.png")
+        val venusMcFlytrap = Doll(name = "Venus McFlytrap", imageUrl = "/dolls/venusmcflytrapnobg.png")
+        val torelaiStripe = Doll(name = "Torelai Stripe", imageUrl = "/dolls/toraleistripenobg.png")
+        val abbeyBominable = Doll(name = "Abbey Bominable", imageUrl = "/dolls/abbeybominablenobg.png")
 
         dollService.saveDoll(clawdeenWolf)
         dollService.saveDoll(draculaura)
         dollService.saveDoll(frankieStein)
+        dollService.saveDoll(cleoDeNyle)
+        dollService.saveDoll(lagoonaBlue)
+        dollService.saveDoll(venusMcFlytrap)
+        dollService.saveDoll(torelaiStripe)
+        dollService.saveDoll(abbeyBominable)
     }
 }
 

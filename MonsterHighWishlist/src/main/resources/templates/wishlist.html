@@ -21,7 +21,7 @@
             background-color: #f2f2f2;
             border-bottom: 1px solid #ccc;
         }
-        .top-bar select, .top-bar input[type="search"] {
+        .top-bar select {
             margin: 5px;
         }
     </style>
@@ -39,12 +39,6 @@
     </div>
     <div>
         <h1 th:text="${listName}">Dolls List</h1>
-    </div>
-    <div>
-        <form th:action="@{/dolls/search}" method="get">
-            <input type="search" name="name" placeholder="Search dolls...">
-            <button type="submit">Search</button>
-        </form>
     </div>
 </div>
 <div class="doll-container">
