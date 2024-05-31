@@ -18,9 +18,9 @@ class MonsterHighWishlistApplication(private val wishlistService: WishlistServic
 
     override fun onApplicationEvent(event: ContextRefreshedEvent) {
         // Initialize some sample data when the application starts
-        val wishlist = Wishlist(name = "Wishlist", category = WishlistCategory.WISHLIST)
-        val considering = Wishlist(name = "Considering", category = WishlistCategory.CONSIDERING)
-        val alreadySecured = Wishlist(name = "Already Secured", category = WishlistCategory.ALREADY_SECURED)
+        val wishlist = Wishlist(name = "wishlist", category = WishlistCategory.WISHLIST)
+        val considering = Wishlist(name = "considering", category = WishlistCategory.CONSIDERING)
+        val alreadySecured = Wishlist(name = "already-secured", category = WishlistCategory.ALREADY_SECURED)
         wishlistService.saveWishlist(wishlist)
         wishlistService.saveWishlist(considering)
         wishlistService.saveWishlist(alreadySecured)

@@ -1,19 +1,65 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Considering</title>
+    <title th:text="${listName}">Considering</title>
+    <style>
+        .card {
+            background-color: #ab6de4;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            text-align: center;
+        }
+        .doll-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+        }
+        .top-bar select, .top-bar input[type="search"] {
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
-<h1 th:text="${listName}">Considering</h1>
+<div class="top-bar">
+    <div>
+        <label for="list-select">List:</label>
+        <select id="list-select" onchange="location = this.value;">
+            <option value="/dolls" th:selected="${listName == 'All Dolls'}">All Dolls</option>
+            <option value="/wishlists/wishlist" th:selected="${listName == 'Wishlist'}">Wishlist</option>
+            <option value="/wishlists/considering" th:selected="${listName == 'Considering'}">Considering</option>
+            <option value="/wishlists/already-secured" th:selected="${listName == 'Already Secured'}">Already Secured</option>
+        </select>
+    </div>
+    <div>
+        <h1 th:text="${listName}">Dolls List</h1>
+    </div>
+    <div>
+        <form th:action="@{/dolls/search}" method="get">
+            <input type="search" name="name" placeholder="Search dolls...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</div>
 <div class="doll-container">
     <div class="card" th:each="doll : ${dolls}">
-        <img th:src="@{${doll.imageUrl}}" alt="Doll Image">
-        <h2 th:text="${doll.name}">Doll Name</h2>
-        <select>
-            <option value="wishlist" th:selected="${doll.wishlist?.name == 'Wishlist'}">Wishlist</option>
-            <option value="considering" th:selected="${doll.wishlist?.name == 'Considering'}">Considering</option>
-            <option value="already-secured" th:selected="${doll.wishlist?.name == 'Already Secured'}">Already Secured</option>
-        </select>
+        <img th:src="@{${doll.imageUrl}}" alt="Doll Image" style="max-width: 100%; height: auto;">
+        <h2 th:text="${doll.name}"></h2>
+        <form th:action="@{/dolls/changeWishlist}" method="post">
+            <select name="wishlist" th:value="${doll.wishlist?.name}" autocomplete="off">
+                <option value="wishlist" th:selected="${doll.wishlist?.name == 'Wishlist'}">Wishlist</option>
+                <option value="considering" th:selected="${doll.wishlist?.name == 'Considering'}">Considering</option>
+                <option value="already-secured" th:selected="${doll.wishlist?.name == 'Already Secured'}">Already Secured</option>
+            </select>
+            <input type="hidden" name="dollId" th:value="${doll.id}"/>
+            <button type="submit">Update</button>
+        </form>
     </div>
 </div>
 </body>

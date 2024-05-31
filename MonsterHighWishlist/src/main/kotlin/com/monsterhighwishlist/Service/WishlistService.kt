@@ -10,4 +10,5 @@ class WishlistService(private val wishlistRepository: WishlistRepository) {
     fun getAllWishlists(): List<Wishlist> = wishlistRepository.findAll()
     fun saveWishlist(wishlist: Wishlist): Wishlist = wishlistRepository.save(wishlist)
     fun getWishlistByCategory(category: WishlistCategory): List<Wishlist> = wishlistRepository.findByCategory(category)
+    fun getWishlistByName(name: String): Wishlist? = wishlistRepository.findByName(name)
 }
