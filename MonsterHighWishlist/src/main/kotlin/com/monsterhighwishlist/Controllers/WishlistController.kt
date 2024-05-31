@@ -5,26 +5,34 @@ import com.monsterhighwishlist.Service.WishlistService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import java.util.*
 
 @Controller
 @RequestMapping("/wishlists")
-class WishlistThymeleafController(private val wishlistService: WishlistService) {
+class WishlistController(private val wishlistService: WishlistService) {
 
-    @GetMapping
-    fun showAllWishlists(model: Model): String {
-        val wishlists = wishlistService.getAllWishlists()
-        model.addAttribute("wishlists", wishlists)
-        return "wishlists" // The name of the Thymeleaf template file (wishlists.html)
+    @GetMapping("/wishlist")
+    fun showWishlist(model: Model): String {
+        val wishlists = wishlistService.getWishlistByCategory(WishlistCategory.WISHLIST)
+        model.addAttribute("dolls", wishlists.flatMap { it.dolls })
+        model.addAttribute("listName", "Wishlist")
+        return "wishlist"
     }
 
-    @GetMapping("/category/{category}")
-    fun showWishlistsByCategory(@PathVariable category: String, model: Model): String {
-        val wishlistCategory = WishlistCategory.valueOf(category.uppercase(Locale.getDefault()))
-        val wishlists = wishlistService.getWishlistByCategory(wishlistCategory)
-        model.addAttribute("wishlists", wishlists)
-        return "wishlists" // The name of the Thymeleaf template file (wishlists.html)
+    @GetMapping("/considering")
+    fun showConsidering(model: Model): String {
+        val considering = wishlistService.getWishlistByCategory(WishlistCategory.CONSIDERING)
+        model.addAttribute("dolls", considering.flatMap { it.dolls })
+        model.addAttribute("listName", "Considering")
+        return "considering"
+    }
+
+    @GetMapping("/already-secured")
+    fun showAlreadySecured(model: Model): String {
+        val alreadySecured = wishlistService.getWishlistByCategory(WishlistCategory.ALREADY_SECURED)
+        model.addAttribute("dolls", alreadySecured.flatMap { it.dolls })
+        model.addAttribute("listName", "Already Secured")
+        return "already-secured"
     }
 }

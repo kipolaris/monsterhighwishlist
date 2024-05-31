@@ -18,14 +18,20 @@ class MonsterHighWishlistApplication(private val wishlistService: WishlistServic
 
     override fun onApplicationEvent(event: ContextRefreshedEvent) {
         // Initialize some sample data when the application starts
-        val wishlist = Wishlist(name = "My Wishlist", category = WishlistCategory.WISHLIST)
+        val wishlist = Wishlist(name = "Wishlist", category = WishlistCategory.WISHLIST)
+        val considering = Wishlist(name = "Considering", category = WishlistCategory.CONSIDERING)
+        val alreadySecured = Wishlist(name = "Already Secured", category = WishlistCategory.ALREADY_SECURED)
         wishlistService.saveWishlist(wishlist)
+        wishlistService.saveWishlist(considering)
+        wishlistService.saveWishlist(alreadySecured)
 
-        val clawdeenWolf = Doll(name = "Clawdeen Wolf", imageUrl = "https://example.com/doll1.jpg")
-        val draculaura = Doll(name = "Draculaura", imageUrl = "https://example.com/doll2.jpg")
+        val clawdeenWolf = Doll(name = "Clawdeen Wolf", imageUrl = "/dolls/clawdeennobg.png")
+        val draculaura = Doll(name = "Draculaura", imageUrl = "/dolls/draculauranobg.png")
+        val frankieStein = Doll(name = "FrankieStein", imageUrl = "/dolls/frankienobg.png")
 
         dollService.saveDoll(clawdeenWolf)
         dollService.saveDoll(draculaura)
+        dollService.saveDoll(frankieStein)
     }
 }
 

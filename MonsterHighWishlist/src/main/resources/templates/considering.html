@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
 <head>
-    <title>Wishlist</title>
+    <title>Considering</title>
 </head>
 <body>
-<h1 th:text="${listName}">Wishlist</h1>
+<h1 th:text="${listName}">Considering</h1>
 <div class="doll-container">
     <div class="card" th:each="doll : ${dolls}">
         <img th:src="@{${doll.imageUrl}}" alt="Doll Image">

@@ -21,4 +21,12 @@ class DollService(private val dollRepository: DollRepository, private val wishli
     }
 
     fun findDollsByName(name: String): List<Doll> = dollRepository.findByNameContaining(name)
+
+    fun updateDollWishlist(dollId: Long, wishlistName: String) {
+        val doll = dollRepository.findById(dollId).orElseThrow { Exception("Doll not found") }
+        val wishlist = wishlistRepository.findByName(wishlistName)
+        doll.wishlist = wishlist
+        dollRepository.save(doll)
+    }
+
 }

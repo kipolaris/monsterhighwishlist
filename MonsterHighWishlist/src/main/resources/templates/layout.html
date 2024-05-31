@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Monster High Wishlist</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/main.js}"></script>
+</head>
+<body>
+<header>
+    <div class="top-bar">
+        <div class="dropdown">
+            <button class="dropbtn">List</button>
+            <div class="dropdown-content">
+                <a th:href="@{/dolls}">All Dolls</a>
+                <a th:href="@{/wishlists/wishlist}">Wishlist</a>
+                <a th:href="@{/wishlists/considering}">Considering</a>
+                <a th:href="@{/wishlists/already-secured}">Already Secured</a>
+            </div>
+        </div>
+        <div class="list-name">
+            <h1 th:text="${listName}">List Name</h1>
+        </div>
+        <div class="search-bar">
+            <form th:action="@{/dolls/search}" method="get">
+                <input type="text" name="name" placeholder="Search dolls...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</header>
+<main>
+    <div th:replace="this :: content"></div>
+</main>
+</body>
+</html>
