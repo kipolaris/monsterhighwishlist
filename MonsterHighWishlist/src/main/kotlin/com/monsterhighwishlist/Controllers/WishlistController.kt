@@ -1,28 +1,30 @@
 package com.monsterhighwishlist.Controllers
 
-import com.monsterhighwishlist.Data.Wishlist
 import com.monsterhighwishlist.Data.WishlistCategory
 import com.monsterhighwishlist.Service.WishlistService
-import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.*
+import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RequestMapping
 import java.util.*
 
-@RestController
-@RequestMapping("/api/wishlists")
-class WishlistController(private val wishlistService: WishlistService) {
-    @GetMapping
-    fun getAllWishlists(): List<Wishlist> = wishlistService.getAllWishlists()
+@Controller
+@RequestMapping("/wishlists")
+class WishlistThymeleafController(private val wishlistService: WishlistService) {
 
-    @PostMapping
-    fun addWishlist(@RequestBody wishlist: Wishlist): Wishlist = wishlistService.saveWishlist(wishlist)
+    @GetMapping
+    fun showAllWishlists(model: Model): String {
+        val wishlists = wishlistService.getAllWishlists()
+        model.addAttribute("wishlists", wishlists)
+        return "wishlists" // The name of the Thymeleaf template file (wishlists.html)
+    }
 
     @GetMapping("/category/{category}")
-    fun getWishlistsByCategory(@PathVariable category: String): ResponseEntity<List<Wishlist>> {
-        return try {
-            val wishlistCategory = WishlistCategory.valueOf(category.uppercase(Locale.getDefault()))
-            ResponseEntity.ok(wishlistService.getWishlistByCategory(wishlistCategory))
-        } catch (e: IllegalArgumentException) {
-            ResponseEntity.badRequest().build()
-        }
+    fun showWishlistsByCategory(@PathVariable category: String, model: Model): String {
+        val wishlistCategory = WishlistCategory.valueOf(category.uppercase(Locale.getDefault()))
+        val wishlists = wishlistService.getWishlistByCategory(wishlistCategory)
+        model.addAttribute("wishlists", wishlists)
+        return "wishlists" // The name of the Thymeleaf template file (wishlists.html)
     }
 }

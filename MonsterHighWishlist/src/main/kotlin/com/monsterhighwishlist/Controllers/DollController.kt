@@ -1,36 +1,27 @@
-import org.springframework.web.bind.annotation.*
-import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
-import java.io.ByteArrayOutputStream
-import javax.imageio.ImageIO
-import com.example.utils.ImageUtils
-import com.monsterhighwishlist.Data.Doll
-import com.monsterhighwishlist.Service.DollService
+package com.monsterhighwishlist.Controllers
 
-@RestController
-@RequestMapping("/api/dolls")
-class DollController(
-    private val dollService: DollService
-) {
+import com.monsterhighwishlist.Service.DollService
+import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
+
+@Controller
+@RequestMapping("/dolls")
+class DollController(private val dollService: DollService) {
 
     @GetMapping
-    fun getAllDolls(): List<Doll> = dollService.getAllDolls()
-
-    @PostMapping
-    fun addDoll(@RequestBody doll: Doll, @RequestParam wishlistId: Long?, @RequestParam allDollsListId: Long): Doll = dollService.saveDoll(doll, wishlistId, allDollsListId)
+    fun showAllDolls(model: Model): String {
+        val dolls = dollService.getAllDolls()
+        model.addAttribute("dolls", dolls)
+        return "dolls" // The name of the Thymeleaf template file (dolls.html)
+    }
 
     @GetMapping("/search")
-    fun searchDolls(@RequestParam name: String): List<Doll> = dollService.findDollsByName(name)
-
-    @GetMapping("/image", produces = [MediaType.IMAGE_JPEG_VALUE])
-    fun getImage(@RequestParam imageUrl: String): ResponseEntity<ByteArray> {
-        val image = ImageUtils.loadImageFromUrl(imageUrl)
-        return if (image != null) {
-            val outputStream = ByteArrayOutputStream()
-            ImageIO.write(image, "jpg", outputStream)
-            ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(outputStream.toByteArray())
-        } else {
-            ResponseEntity.notFound().build()
-        }
+    fun searchDolls(@RequestParam name: String, model: Model): String {
+        val dolls = dollService.findDollsByName(name)
+        model.addAttribute("dolls", dolls)
+        return "dolls" // The name of the Thymeleaf template file (dolls.html)
     }
 }
