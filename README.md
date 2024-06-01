@@ -1,5 +1,5 @@
 # Monster High Wishlist
-Spring boot applikáció kotlinban ahol Monster High babákat lehet listákba rendezni.
+Spring Boot applikáció Kotlinban, ahol Monster High babákat lehet listákba rendezni.
 
 ## Listák:
 - Összes baba
