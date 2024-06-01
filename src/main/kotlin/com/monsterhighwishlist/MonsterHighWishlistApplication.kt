@@ -36,7 +36,7 @@ class MonsterHighWishlistApplication(private val wishlistService: WishlistServic
         val lagoonaBlue = Doll(name = "Lagoona Blue", imageUrl = "/dolls/lagoonablue.png")
         val spectraVondergeist = Doll(name = "Spectra Vondergeist", imageUrl = "/dolls/spectravondergeist.png")
         val venusMcFlytrap = Doll(name = "Venus McFlytrap", imageUrl = "/dolls/venusmcflytrap.png")
-        val torelaiStripe = Doll(name = "Torelai Stripe", imageUrl = "/dolls/toraleistripe.png")
+        val toraleiStripe = Doll(name = "Toralei Stripe", imageUrl = "/dolls/toraleistripe.png")
 
         dollService.saveDoll(abbeyBominable)
         dollService.saveDoll(cattyNoir)
@@ -49,7 +49,7 @@ class MonsterHighWishlistApplication(private val wishlistService: WishlistServic
         dollService.saveDoll(lagoonaBlue)
         dollService.saveDoll(spectraVondergeist)
         dollService.saveDoll(venusMcFlytrap)
-        dollService.saveDoll(torelaiStripe)
+        dollService.saveDoll(toraleiStripe)
     }
 }
 
