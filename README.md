@@ -8,16 +8,15 @@ Spring boot applikáció kotlinban ahol Monster High babákat lehet listákba re
 - Already secured
 
 ## Babák:
+- Abbey Bominable
+- Catty Noir
 - Clawdeen Wolf
 - Draculaura
-- Frankie Stein
 - Cleo de Nyle
-- Lagoona Blue
 - Deuce Gorgon
-- Clawd Wolf
+- Frankie Stein
 - Ghoulia Yelps
-- Toralei Stripe
-- Abbey Bominable
-- Venus McFlytrap
-- Catty Noir
+- Lagoona Blue
 - Spectra Vondergeist
+- Venus McFlytrap
+- Toralei Stripe
