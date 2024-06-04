@@ -1,6 +1,13 @@
 # Monster High Wishlist
 Spring Boot applikáció Kotlinban, ahol Monster High babákat lehet listákba rendezni.
 
+## Használt Spring Boot technológiák
+- Dev tools
+- Web
+- Spring data JPA
+- Thymeleaf
+- H2 database
+
 ## Listák:
 - Összes baba
 - Wishlist
